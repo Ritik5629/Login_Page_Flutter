@@ -30,7 +30,7 @@ class LoginPage extends StatelessWidget {
           SizedBox(height: 20),
 
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16,horizontal: 36),
+            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 36),
             child: Column(
               children: [
                 TextFormField(
@@ -39,7 +39,7 @@ class LoginPage extends StatelessWidget {
                     label: Text("Username"),
                   ),
                 ),
-            
+
                 TextFormField(
                   obscureText: true,
                   decoration: InputDecoration(label: Text("Password")),
@@ -49,7 +49,7 @@ class LoginPage extends StatelessWidget {
           ),
 
           SizedBox(height: 20),
-          
+
           ElevatedButton(
             onPressed: () {},
             style: ElevatedButton.styleFrom(
@@ -57,8 +57,7 @@ class LoginPage extends StatelessWidget {
               foregroundColor: Colors.white,
             ),
             child: Text("LOGIN"),
-          )
-
+          ),
         ],
       ),
     );
