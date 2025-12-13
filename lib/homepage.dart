@@ -9,7 +9,7 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final items = CatalogModel.items;
-
+    final dummyList = List.generate(20, (index) => CatalogModel.items[0]);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Home Page"),
@@ -21,9 +21,9 @@ class Homepage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView.builder(
-          itemCount: items.length,
+          itemCount: dummyList.length,
           itemBuilder: (context, index) {
-            return ItemWidget(item: items[index]);
+            return ItemWidget(item: dummyList[index]);
           },
         ),
       ),
