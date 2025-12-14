@@ -12,7 +12,10 @@ class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Cart")),
+      appBar: AppBar(
+        title: const Text("Cart"),
+        backgroundColor: Colors.deepPurple,
+      ),
       body: CartModel.items.isEmpty
           ? const Center(child: Text("Cart is empty"))
           : ListView(
@@ -22,7 +25,6 @@ class _CartPageState extends State<CartPage> {
 
                 return ListTile(
                   title: Text(item.name),
-                  subtitle: Text("\$${item.price}"),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [

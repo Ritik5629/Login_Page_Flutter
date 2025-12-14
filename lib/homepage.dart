@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:login_page/drawer.dart';
 import 'package:login_page/catalog.dart';
 import 'package:login_page/item_widget.dart';
+import 'cart_page.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -22,7 +23,6 @@ class _HomepageState extends State<Homepage> {
     final catalogJson = await rootBundle.loadString(
       "assets/files/catalog.json",
     );
-
     CatalogModel.loadFromJson(catalogJson);
     setState(() {});
   }
@@ -33,6 +33,17 @@ class _HomepageState extends State<Homepage> {
       appBar: AppBar(
         title: const Text("Home Page"),
         backgroundColor: Colors.deepPurple,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.shopping_cart),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const CartPage()),
+              );
+            },
+          ),
+        ],
       ),
       drawer: const AppDrawer(),
       body: CatalogModel.items.isEmpty

@@ -18,29 +18,23 @@ class ItemWidget extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Image.network(
-            item.image,
-            width: 50,
-            height: 50,
-            fit: BoxFit.cover,
-          ),
+          Image.network(item.image, width: 50, height: 50, fit: BoxFit.cover),
           const SizedBox(width: 10),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(item.name,
-                    style: const TextStyle(fontWeight: FontWeight.bold)),
                 Text(
-                  item.desc,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+                  item.name,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
+                Text(item.desc, maxLines: 1, overflow: TextOverflow.ellipsis),
                 Text(
                   "\$${item.price}",
                   style: const TextStyle(
-                      color: Colors.deepPurple,
-                      fontWeight: FontWeight.bold),
+                    color: Colors.deepPurple,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
@@ -48,8 +42,12 @@ class ItemWidget extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               CartModel.add(item);
+
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text("Added to Cart")),
+                const SnackBar(
+                  content: Text("Item added to cart"),
+                  duration: Duration(seconds: 1),
+                ),
               );
             },
             child: const Text("Buy"),
