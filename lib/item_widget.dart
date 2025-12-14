@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'catalog.dart';
+import 'cart_model.dart';
 
 class ItemWidget extends StatelessWidget {
   final Item item;
@@ -8,34 +9,52 @@ class ItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 120,
-      child: Card(
-        child: ListTile(
-          onTap: () {
-            print("${item.name} pressed");
-          },
-          leading: Image.network(
+    return Container(
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.deepPurple.withOpacity(0.3)),
+      ),
+      child: Row(
+        children: [
+          Image.network(
             item.image,
             width: 50,
             height: 50,
             fit: BoxFit.cover,
           ),
-          title: Text(item.name),
-          subtitle: Text(
-            item.desc,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-          trailing: Text(
-            "\$${item.price}",
-            style: const TextStyle(
-              color: Colors.deepPurple,
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(item.name,
+                    style: const TextStyle(fontWeight: FontWeight.bold)),
+                Text(
+                  item.desc,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Text(
+                  "\$${item.price}",
+                  style: const TextStyle(
+                      color: Colors.deepPurple,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
           ),
-        ),
+          ElevatedButton(
+            onPressed: () {
+              CartModel.add(item);
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text("Added to Cart")),
+              );
+            },
+            child: const Text("Buy"),
+          ),
+        ],
       ),
     );
   }
